@@ -1,0 +1,95 @@
+"" Searching
+" set hlsearch " highlight matches with the last search pattern
+set incsearch " show where search pattern typed so far matches
+set ignorecase " ignore case in search patterns
+
+" shows both the line number and the relative line number in the gutter.
+set number
+set relativenumber
+
+"" Set default split mode
+set splitright
+
+""" -- Suggested options --
+"" Show a few lines of context around the cursor. Note that this makes the
+"" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
+
+"" show the status line all the time
+set laststatus=2
+
+"" pairs of characters that "%" can match
+set matchpairs=(:),[:],{:}
+
+"" This is a comma-separated list of words, which specify when to start
+""              Select mode instead of Visual mode, when a selection is started.
+""              Possible values:
+""                mouse           when using the mouse
+""                key             when using shifted special[1] keys
+""                cmd             when using "v", "V", or <C-V>
+""                ideaselection   when IDE sets a selection      - IdeaVim ONLY
+""                                (examples: extend selection, wrap with while, etc.)
+set selectmode=mouse,ideaselection
+
+
+"""""""""""""
+"" Plugins ""
+"""""""""""""
+let mapleader=" "
+
+set easymotion
+set surround
+set commentary
+set NERDTree
+set which-key
+filetype plugin indent on
+
+" set which-key
+set timeoutlen=5000
+
+"" copy and paste to/from vIM and the clipboard
+"nnoremap <C-y> +y
+"vnoremap <C-y> +y
+"nnoremap <C-p> +P
+"vnoremap <C-p> +P
+""set clipboard+=unnamed
+""set clipboard+=ideaput
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+
+"" Don't use Ex mode, use Q for formatting.
+map Q gq
+"
+"" toggle invisible characters
+set invlist
+set list
+set listchars=tab:¦\ ,eol:¬,trail:.,extends:>,precedes:<
+"
+"
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Map \r to the Reformat Code action
+map <leader>cf <Action>(ReformatCode)
+
+" Map H and L to switch between open tabs
+nmap H <Action>(PreviousTab)
+nmap L <Action>(NextTab)
+
+" Map Ctrl+h and Ctrl+l to switch between open windows
+nmap <C-h> <C-w><C-h>
+nmap <C-l> <C-w><C-l>
+
+" Map \e to toggle NERDTree
+nmap <leader>e :NERDTreeToggle<CR>
+
+"
+""" Map <leader>d to start debug
+""" map <leader>d <Action>(Debug)
+"
+""" Map \b to toggle the breakpoint on the current line
+""" map <leader>b <Action>(ToggleLineBreakpoint)
+"
+""" Map \t to open Terminal
+"nnoremap <leader>t :action ActivateTerminalToolWindow<cr>
+""" map Ctrl+z to toggle distraction free mode
+"nnoremap <C-z> :action ToggleDistractionFreeMode<cr>
+"" Find more examples here: https://jb.gg/share-ideavimrc
